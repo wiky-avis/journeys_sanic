@@ -12,10 +12,12 @@ config = context.config
 
 fileConfig(config.config_file_name)
 
-import os, sys
+import os
+import sys
+
 sys.path.append(os.getcwd())
 from app import Base
-from settings import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+from settings import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
 target_metadata = Base.metadata
 

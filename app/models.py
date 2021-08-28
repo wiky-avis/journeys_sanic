@@ -1,12 +1,16 @@
-from sqlalchemy import Column, Integer, String, Text, Numeric, Date, ForeignKey
+from sqlalchemy import Column, Date, ForeignKey, Integer, Numeric, String, Text, INTEGER
 from sqlalchemy.orm import relationship
-from . import Base
+from app import Base
 
 
-class Tour(Base):
+class BaseModel(Base):
+    __abstract__ = True
+    id = Column(INTEGER(), primary_key=True)
+
+
+class Tour(BaseModel):
     __tablename__ = 'tour'
 
-    id = Column(Integer, autoincrement=True, primary_key=True)
     title = Column(String)
     description = Column(Text, nullable=True)
     departure = Column(String, nullable=True)
@@ -22,10 +26,9 @@ class Tour(Base):
     date = Column(Date, nullable=True)
 
 
-class Departure(Base):
+class Departure(BaseModel):
     __tablename__ = 'departure'
 
-    id = Column(Integer, autoincrement=True, primary_key=True)
     title = Column(String, nullable=True)
     abbr = Column(String, nullable=True)
     tour_id = Column(Integer, ForeignKey('tour.id'))
