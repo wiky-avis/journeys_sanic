@@ -34,11 +34,11 @@ def run_migrations_online():
     alembic_config = config.get_section(config.config_ini_section)
     alembic_config['sqlalchemy.url'] = URL(
         drivername='postgresql',
-        username=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=DB_PORT,
-        database=DB_NAME
+        username='sanic2',
+        password='sanic2',
+        host='localhost',
+        port=5432,
+        database='sanic2'
     )
 
     engine = engine_from_config(alembic_config)
